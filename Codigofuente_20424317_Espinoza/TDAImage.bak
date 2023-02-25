@@ -1,0 +1,3 @@
+#lang racket
+;TDA IMAGE
+(define(image width height . pix) (list width height pix))

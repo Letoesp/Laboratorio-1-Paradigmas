@@ -1,0 +1,140 @@
+#lang racket
+(provide (all-defined-out))
+(require "TDAPixel_20424317_Espinoza.rkt")
+(require "TDAImage_20424317_Espinoza.rkt")
+;Archivo Script de pruebas que también servirá como main
+
+;; Scripts para las pruebas, solo se implementan las que funcionan correctamente:
+;; TDA 2
+(define img30 (imagen 2 2 (pixbit  0 0 1 10) (pixbit  0 1 0 20) (pixbit 1 0 0 30) (pixbit 1 1 1 4)))
+(define img31 (imagen 2 2 (pixrgb  0 0 10 10 10 10)(pixrgb  0 0 10 10 10 10) (pixrgb  0 1 20 20 20 20) (pixrgb 1 0 30 30 30 30) (pixrgb 1 1 40 40 40 40)))
+(define img32 (imagen 2 2 (pixhex  0 0 "#FF5733" 10) (pixbit  0 1 "#FF5733" 20) (pixbit 1 0 "#FF5733" 30) (pixbit 1 1 "#FF5733" 4)))
+
+;; TDA 3
+(bitmap? img30) ; la respuesta debería ser #t
+(bitmap? img31)  ; la respuesta debería ser #f
+(bitmap? img32)  ; la respuesta debería ser #f
+;; TDA 4
+(pixmap? img30) ; la respuesta debería ser #f
+(pixmap? img31)  ; la respuesta debería ser #t
+(pixmap? img32)  ; la respuesta debería ser #f
+;; TDA 5
+(hexmap? img30) ; la respuesta debería ser #f
+(hexmap? img31)  ; la respuesta debería ser #f
+(hexmap? img32)  ; la respuesta debería ser #t
+;;TDA 6
+(compressed? img30) ; la respuesta debería ser #f
+(compressed? img31) ; la respuesta debería ser #f
+(compressed? img32) ; la respuesta debería ser #f
+
+;; TDA 7
+(flipH img30)
+(flipH img31)
+(flipH img32)
+;; TDA 8
+(flipV img30)
+(flipV img31)
+(flipV img32)
+;; TDA 9 implementacion no totalmente funcional
+
+;;TDA 10
+(imgRGB->imgHex img31)
+(imgRGB->imgHex (image 2 2 (pixrgb-d  0 0 0 0 0 10) (pixrgb-d  0 1 2 2 0 20) (pixrgb-d 1 0 3 0 0 30) (pixrgb-d 1 1 0 0 0 40)))
+(imgRGB->imgHex (image 2 2 (pixrgb-d  0 0 110 130 10 10) (pixrgb-d  0 1 240 20 20 20) (pixrgb-d 1 0 130 240 230 30) (pixrgb-d 1 1 140 40 40 40)))
+
+;; TDA 11, 12, 13 implementados pero no totalmente funcionales
+
+;; TDA 14 se probaran con TDAs de TDA 15 y 16
+
+(edit invertColorBit  img30)
+(edit invertColorBit  (image 2 2 (pixbit-d  0 0 1 10) (pixbit-d  0 1 1 20) (pixbit-d 1 0 1 30) (pixbit-d 1 1 0 4)) )
+(edit invertColorBit  (image 2 2 (pixbit-d  0 0 0 10) (pixbit-d  0 1 0 20) (pixbit-d 1 0 0 30) (pixbit-d 1 1 0 4)) )
+
+(edit invertColorRGB  img31)
+(edit invertColorRGB  (image 2 2 (pixrgb-d  0 0 110 110 110 10) (pixrgb-d  0 1 120 120 120 20) (pixrgb-d 1 0 130 130 130 30) (pixrgb-d 1 1 140 140 140 40)))
+(edit invertColorRGB  (image 2 2 (pixrgb-d  0 0 10 10 10 10) (pixrgb-d  0 1 20 20 20 20) (pixrgb-d 1 0 30 30 30 30) (pixrgb-d 1 1 40 40 40 40)))
+
+;; TDA 17 implementacion no totalmente funcional
+
+;; TDA 18, 19 y 20 no implentados
+;; ===================================================================
+;; SCRIPTS EXTRAS DEL DOCUMENTO, SE HAN ELIMINADO LAS NO IMPLEMENTADAS:
+;; ================================================================
+;img1
+
+;Creación de una imagen de 2 x 2 del tipo pixmap
+(define img1 (image 2 2
+                  (pixrgb-d 0 0 255 0 0 10)
+                  (pixrgb-d 0 1 0 255 0 20)
+                  (pixrgb-d 1 0 0 0 255 10)
+                  (pixrgb-d 1 1 255 255 255  1)
+ ))
+
+;img2
+
+;Creación de una imagen de 2 x 2 del tipo bitmap
+(define img2 (image 2 2
+                  (pixbit-d 0 0 0 10)
+                  (pixbit-d 0 1 1 20)
+                  (pixbit-d 1 0 1 10)
+                  (pixbit-d 1 1 0 255))
+ )
+
+(define img3 (imgRGB->imgHex img1))
+
+
+
+;output:
+; #FF0000 #00FF00
+; #0000FF #FFFFFF
+
+
+;output:
+;0 1
+;1 0
+
+;; El resto de los ejemplos, los puede obtener directamente desde las tablas presentadas en el enunciado. 
+
+(bitmap? img1) ; la respuesta debería ser #f
+(bitmap? img2)  ; la respuesta debería ser #t
+(bitmap? img3)  ; la respuesta debería ser #f
+
+(pixmap? img1) ; la respuesta debería ser #t
+(pixmap? img2)  ; la respuesta debería ser #f
+(pixmap? img3)  ; la respuesta debería ser #f
+
+(hexmap? img1) ; la respuesta debería ser #f
+(hexmap? img2)  ; la respuesta debería ser #f
+(hexmap? img3)  ; la respuesta debería ser #t
+
+(compressed? img1) ; la respuesta debería ser #f
+(compressed? img2) ; la respuesta debería ser #f
+(compressed? img3) ; la respuesta debería ser #f
+
+(flipH img1)
+(flipH img2)
+(flipH img3)
+
+(flipV img1)
+(flipV img2)
+(flipV img3)
+
+
+
+(define img18 (rotate90 img1))
+(define img19 (rotate90 img2))
+(define img20 (rotate90 img3))
+
+
+(define img8 (compress img1))
+(define img9 (compress img2))
+(define img10 (compress img3))
+
+
+(compressed? img8)  ; la respuesta debería ser #t
+(compressed? img9)  ; la respuesta debería ser #t
+(compressed? img10)  ; la respuesta debería ser #t
+
+(define img15 (edit invertColorBit img2))
+(define img16 (edit invertColorRGB img1))
+

@@ -1,0 +1,107 @@
+#lang racket
+;Se necesita de TDA pixel para la construcción y funcionalidades de TDA IMAGE
+;TDA IMAGE
+;Representación-----------------------------------------------------
+;Este TDA corresponde a la representación de una imagen, en donde su estructura será mediante listas.
+
+
+;Contructores-----------------------------------------------
+
+;Dominio: Se pide un tamaño de imagen (ancho y largo) y una cantidad de pixeles de forma homogénea 
+;Recorrido: image
+;Descripción : Función que construye imagenes con bitmaps, hexmaps o pixmaps. Se
+;incluye información de profundidad de cada pixel
+
+(define(image width height . pix) (list width height pix))
+
+
+;Funciones de pertenencia-----------------------------------
+
+;Dominio: image
+;Recorrido: boolean
+;Descripción: función que permite determinar si la imagen corresponde a un bitmap-d
+
+;Dominio: image
+;Recorrido: boolean
+;Descripción: función que permite determinar si la imagen corresponde a un pixmap-d
+
+;Dominio: image
+;Recorrido: boolean
+;Descripción: función que permite determinar si la imagen corresponde a un hexmap-d
+
+;Dominio: image
+;Recorrido: boolean
+;Descripción: función que determina si una imagen está comprimida.
+
+
+;Selectores-------------------------------------------------
+
+
+
+;Modificadores----------------------------------------------
+
+;Dominio: image
+;Recorrido: image
+;Descripción: Función que permite invertir una imagen horizontalmente
+
+;Dominio: image
+;Recorrido: image
+;Descripción: Función que permite invertir una imagen verticalmente
+
+;Dominio: image X x1 (int) X y1 (int) X x2 (int) X y2 (int)
+;Recorrido: image
+;Descripción: función que permite recortar una imagen a partir de un cuadrante
+
+;Dominio: image
+;Recorrido: image
+;Descripción: función que transforma una imagen desde una representación RGB a una
+;representación HEX.
+
+;Dominio: image
+;Recorrido: image
+;Descripción: función que rota la imagen 90 grados a la derecha
+
+;Dominio: image
+;Recorrido: image
+;Descripción: función que comprime una imagen eliminando aquellos pixeles con el color
+;más frecuente
+
+;Dominio: f x image
+;Recorrido: image
+;Descripción:función que permite aplicar funciones especiales a las imagenes.
+
+
+;Otras Funciones--------------------------------------------
+
+;Dominio: pixbit-d
+;Recorrido: pixbit-d
+;Descripción: función que permite obtener el valor del bit opuesto
+
+;Dominio: pixrgb-d
+;Recorrido:pixrgb-d
+;Descripción: función que permite obtener el color simetricamente opuesto en cada
+;canal dentro de un pixel
+
+;Dominio: f1 X F2 x F3 x pixrgb-d
+;Recorrido: pixrgb-d
+;Descripción: función que permite ajustar cualquier canal de una imagen con pixeles
+;pixrgb-d, incluido el canal de profundidad d.
+
+;Dominio:image X f
+;Recorrido: string
+;Descripción: función que transforma una imagen a una representación string.
+
+;Dominio: image
+;Recorrido: image list
+;Descripción: función que permite separar una imagen en capas en base a la profundidad
+;que se situan los pixeles
+
+;Dominio: image
+;Recorrido: image
+;Descripción: función que permite descomprimir una imagen comprimida.
+
+;Dominio:image
+;Recorrido: histogram
+;Descripción: función que retorna un histograma a partir de los colores en cada una
+; de las imagenes.
+

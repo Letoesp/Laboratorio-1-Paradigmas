@@ -1,0 +1,6 @@
+#lang racket
+;TDA PIXEL
+(define(pixbit-d . bit)bit)
+(define(pixrgb-d . rgb)rgb)
+(define(pixhex-d . hex)hex)
+
